@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+
+<head>
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="../../img/fav.png">
+    <!-- Author Meta -->
+    <meta name="author" content="Ashhar Ahmed">
+    <!-- Meta Description -->
+    <meta name="description" content="Ollama Local LLM Setup Guide - Ashhar Ahmed">
+    <!-- Meta Keyword -->
+    <meta name="keywords" content="">
+    <!-- meta character set -->
+    <meta charset="UTF-8">
+    <!-- Site Title -->
+    <title>Ollama Local LLM Setup Guide | Ashhar Ahmed</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700,900" rel="stylesheet">
+    <!--CSS============================================= -->
+    <link rel="stylesheet" href="../../css/linearicons.css">
+    <link rel="stylesheet" href="../../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/magnific-popup.css">
+    <link rel="stylesheet" href="../../css/nice-select.css">
+    <link rel="stylesheet" href="../../css/animate.min.css">
+    <link rel="stylesheet" href="../../css/owl.carousel.css">
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/worklog.css">
+</head>
+
+<body>
+
+    <!-- Start Header Area -->
+    <header id="header" class="dark">
+        <div class="container main-menu">
+            <div class="row align-items-center d-flex">
+                <div id="logo">
+                    <a href="../../index.html"><img src="../../img/logo.png" alt="" title="" width="50" height="50" /></a>
+                </div>
+                <nav id="nav-menu-container" class="ml-auto">
+                    <ul class="nav-menu white">
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../about.html">About</a></li>
+                        <li><a class="active" href="../index.html">Work Log</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!-- End Header Area -->
+
+    <!-- start banner Area -->
+    <section class="banner-area relative">
+        <div class="container">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="about-content col-lg-12 compact-banner">
+                    <h1 class="text-white">
+                        Ollama Local LLM Setup Guide
+                    </h1>
+                    <p class="link-nav">
+                        <span class="box">
+                            <a href="../../index.html">Home </a>
+                            <a href="../index.html">Work Log</a>
+                            <a href="../learning-path.html">Learning Path</a>
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End banner Area -->
+
+    <!-- Start Article Area -->
+    <section class="worklog-area">
+        <div class="container">
+            <div class="article-wrap">
+
+                <a class="back-link" href="rag-api-fastapi.html">&larr; Back to RAG API with FastAPI</a>
+
+                <div class="article-meta">
+                    <span class="log-date">Setup Guide</span>
+                    <ul class="tag-list">
+                        <li>Ollama</li>
+                        <li>Local LLM</li>
+                        <li>llmfit</li>
+                        <li>Windows / macOS / Linux</li>
+                    </ul>
+                </div>
+
+                <div class="article-body">
+
+                    <h2>Introduction</h2>
+                    <p>
+                        Ollama lets you download and run open-source Large Language Models (LLMs) directly on your
+                        own computer - no cloud account, subscription, or internet dependency required once a model
+                        is downloaded. This guide walks through the full process end to end: checking which models
+                        your hardware can realistically handle, choosing a model that fits your use case, installing
+                        Ollama, and running your first local chat session. This is the same setup used to run the
+                        LLM (Qwen2.5:0.5B) behind the <a href="rag-api-fastapi.html">RAG API with FastAPI</a> project.
+                    </p>
+                    <div class="callout callout-tip">
+                        <strong>Who this guide is for:</strong> Anyone who wants to experiment with LLMs privately and
+                        locally, including developers, students, researchers, and hobbyists with no prior experience
+                        running AI models on their own machine.
+                    </div>
+
+                    <h2>Step 1 - Check Compatible Models Using llmfit</h2>
+                    <p>
+                        Not every model runs well on every machine. Larger models need more RAM and, ideally, a
+                        dedicated GPU. Before downloading anything, use <code>llmfit</code> to analyze your CPU, RAM,
+                        and GPU, and get a recommendation of which models will run smoothly on your specific
+                        hardware.
+                    </p>
+
+                    <h3>Install llmfit</h3>
+                    <div class="os-grid">
+                        <div class="os-card">
+                            <h4>Windows (Scoop)</h4>
+                            <pre>scoop install llmfit</pre>
+                        </div>
+                        <div class="os-card">
+                            <h4>macOS (Homebrew)</h4>
+                            <pre>brew install llmfit</pre>
+                        </div>
+                        <div class="os-card">
+                            <h4>Linux</h4>
+                            <pre># Global install
+curl -fsSL https://llmfit.axjns.dev/install.sh | sh
+
+# Local install (no sudo)
+curl -fsSL https://llmfit.axjns.dev/install.sh | sh -s -- --local</pre>
+                        </div>
+                    </div>
+
+                    <div class="callout callout-warn">
+                        <strong>Note:</strong> Always review install scripts from third-party sources before piping
+                        them into a shell, especially on shared or production machines.
+                    </div>
+
+                    <p>Official resource: <a href="https://www.llmfit.org/" target="_blank" rel="noopener">https://www.llmfit.org/</a></p>
+
+                    <h2>Step 2 - Find an Ollama Model</h2>
+                    <p>
+                        Browse the official Ollama Model Library to pick a model suited to your use case (general
+                        chat, coding, reasoning, etc.). Popular model families include:
+                    </p>
+                    <table>
+                        <tr>
+                            <th>Model Family</th>
+                            <th>Best Known For</th>
+                        </tr>
+                        <tr>
+                            <td>Qwen</td>
+                            <td>Strong general-purpose and multilingual performance</td>
+                        </tr>
+                        <tr>
+                            <td>Gemma</td>
+                            <td>Lightweight, fast, Google-developed models</td>
+                        </tr>
+                        <tr>
+                            <td>Llama</td>
+                            <td>Widely supported, general-purpose Meta models</td>
+                        </tr>
+                        <tr>
+                            <td>DeepSeek</td>
+                            <td>Strong reasoning and step-by-step problem solving</td>
+                        </tr>
+                        <tr>
+                            <td>Mistral</td>
+                            <td>Efficient, high-quality open-weight models</td>
+                        </tr>
+                        <tr>
+                            <td>Phi</td>
+                            <td>Compact Microsoft models, good on limited hardware</td>
+                        </tr>
+                        <tr>
+                            <td>CodeLlama</td>
+                            <td>Code generation and completion</td>
+                        </tr>
+                    </table>
+                    <div class="callout callout-tip">
+                        <strong>Tip:</strong> Cross-check the <code>llmfit</code> recommendation from Step 1 against
+                        the model sizes listed in the library so you pick something your hardware can run
+                        comfortably.
+                    </div>
+                    <p>Official Model Library: <a href="https://registry.ollama.com/library" target="_blank" rel="noopener">https://registry.ollama.com/library</a></p>
+
+                    <h2>Step 3 - Install Ollama</h2>
+                    <ul class="step-list">
+                        <li>Visit <a href="https://ollama.com/download" target="_blank" rel="noopener">https://ollama.com/download</a></li>
+                        <li>Download the installer for your operating system (Windows, macOS, or Linux).</li>
+                        <li>Run the installer and follow the on-screen instructions to complete setup.</li>
+                    </ul>
+
+                    <h2>Step 4 - Pull a Model</h2>
+                    <p>Open <strong>PowerShell</strong> (Windows) or your terminal (macOS/Linux), then pull a model:</p>
+                    <pre>ollama pull qwen2.5:0.5b</pre>
+                    <p>More examples:</p>
+                    <pre>ollama pull gemma3:4b
+ollama pull llama3.2:3b
+ollama pull deepseek-r1:8b</pre>
+
+                    <h2>Step 5 - Run the Model</h2>
+                    <pre>ollama run qwen2.5:0.5b</pre>
+                    <p>Or:</p>
+                    <pre>ollama run gemma3:4b</pre>
+                    <div class="callout callout-tip">
+                        Once running, the model loads into an interactive chat prompt directly in your terminal.
+                        Type your message and press Enter to chat.
+                    </div>
+
+                    <h2>Useful Ollama Commands</h2>
+                    <table>
+                        <tr>
+                            <th>Purpose</th>
+                            <th>Command</th>
+                        </tr>
+                        <tr>
+                            <td>List installed models</td>
+                            <td><code>ollama list</code></td>
+                        </tr>
+                        <tr>
+                            <td>Show Ollama version</td>
+                            <td><code>ollama --version</code></td>
+                        </tr>
+                        <tr>
+                            <td>Show help</td>
+                            <td><code>ollama --help</code></td>
+                        </tr>
+                        <tr>
+                            <td>Remove a model</td>
+                            <td><code>ollama rm qwen2.5:0.5b</code></td>
+                        </tr>
+                        <tr>
+                            <td>Stop a running model</td>
+                            <td><code>ollama stop &lt;model&gt;</code></td>
+                        </tr>
+                        <tr>
+                            <td>Show model details</td>
+                            <td><code>ollama show &lt;model&gt;</code></td>
+                        </tr>
+                    </table>
+
+                    <h2>Recommended Beginner Models</h2>
+                    <table>
+                        <tr>
+                            <th>Purpose</th>
+                            <th>Recommended Model</th>
+                        </tr>
+                        <tr>
+                            <td>Lightweight Chat</td>
+                            <td><code>qwen2.5:0.5b</code></td>
+                        </tr>
+                        <tr>
+                            <td>General Assistant</td>
+                            <td><code>qwen2.5:7b</code></td>
+                        </tr>
+                        <tr>
+                            <td>Coding</td>
+                            <td><code>qwen2.5-coder:7b</code></td>
+                        </tr>
+                        <tr>
+                            <td>Reasoning</td>
+                            <td><code>deepseek-r1:8b</code></td>
+                        </tr>
+                        <tr>
+                            <td>Fast Local AI</td>
+                            <td><code>gemma3:4b</code></td>
+                        </tr>
+                    </table>
+
+                    <h2>Troubleshooting</h2>
+                    <table>
+                        <tr>
+                            <th>Issue</th>
+                            <th>Likely Cause / Fix</th>
+                        </tr>
+                        <tr>
+                            <td>Model runs very slowly</td>
+                            <td>Model is too large for available RAM/GPU - re-check with <code>llmfit</code> and try
+                                a smaller variant (e.g. <code>0.5b</code> or <code>3b</code>).</td>
+                        </tr>
+                        <tr>
+                            <td><code>ollama</code> command not found</td>
+                            <td>Restart your terminal after installation, or confirm Ollama was added to your system
+                                PATH.</td>
+                        </tr>
+                        <tr>
+                            <td>Model download fails or stalls</td>
+                            <td>Check your internet connection and available disk space, then re-run
+                                <code>ollama pull &lt;model&gt;</code>.</td>
+                        </tr>
+                        <tr>
+                            <td>Out of memory errors</td>
+                            <td>Close other memory-heavy applications, or switch to a smaller quantized model.</td>
+                        </tr>
+                    </table>
+
+                    <h2>Workflow Summary</h2>
+                    <ul class="workflow-list">
+                        <li><span class="dot"></span>Install llmfit</li>
+                        <li><span class="dot"></span>Analyze your hardware</li>
+                        <li><span class="dot"></span>Choose a compatible model</li>
+                        <li><span class="dot"></span>Install Ollama</li>
+                        <li><span class="dot"></span>Pull the model - <code>ollama pull &lt;model&gt;</code></li>
+                        <li><span class="dot"></span>Run the model - <code>ollama run &lt;model&gt;</code></li>
+                        <li><span class="dot"></span>Start chatting with your local AI</li>
+                    </ul>
+
+                    <h2>Official Resources</h2>
+                    <ul class="resource-list">
+                        <li>Ollama Documentation - <a href="https://docs.ollama.com/" target="_blank" rel="noopener">https://docs.ollama.com/</a></li>
+                        <li>Ollama Model Library - <a href="https://registry.ollama.com/library" target="_blank" rel="noopener">https://registry.ollama.com/library</a></li>
+                        <li>Ollama Download - <a href="https://ollama.com/download" target="_blank" rel="noopener">https://ollama.com/download</a></li>
+                        <li>llmfit - <a href="https://www.llmfit.org/" target="_blank" rel="noopener">https://www.llmfit.org/</a></li>
+                    </ul>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- End Article Area -->
+
+    <!-- start footer Area -->
+    <footer class="footer-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="footer-top flex-column">
+                        <div class="footer-logo">
+                            <a href="#">
+                                <img src="../../img/logo.png" alt="" width="200" height="200">
+                            </a>
+                            <h4>Follow Me</h4>
+                        </div>
+                        <div class="footer-social">
+                            <a href="https://www.facebook.com/ashhar.ahmed1/"><i class="fa fa-facebook"></i></a>
+                            <a href="https://twitter.com/AshharWeligama"><i class="fa fa-twitter"></i></a>
+                            <a href="https://linkedin.com/in/ashhar-ahmed-se"><i class="fa fa-linkedin"></i></a>
+                            <a href="https://github.com/AshharAhamed"><i class="fa fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row footer-bottom justify-content-center">
+                <p class="col-lg-8 col-sm-12 footer-text">
+                    Copyright &copy;
+                    <script>
+                        document.write(new Date().getFullYear());
+                    </script>
+                    All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#" target="_blank">Ashhar Ahmed</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!-- End footer Area -->
+
+    <!-- ####################### Start Scroll to Top Area ####################### -->
+    <div id="back-top">
+        <a title="Go to Top" href="#">
+            <i class="lnr lnr-arrow-up"></i>
+        </a>
+    </div>
+    <!-- ####################### End Scroll to Top Area ####################### -->
+
+    <script src="../../js/vendor/jquery-2.2.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="../../js/vendor/bootstrap.min.js"></script>
+    <script src="../../js/easing.min.js"></script>
+    <script src="../../js/hoverIntent.js"></script>
+    <script src="../../js/superfish.min.js"></script>
+    <script src="../../js/mn-accordion.js"></script>
+    <script src="../../js/jquery.ajaxchimp.min.js"></script>
+    <script src="../../js/jquery.magnific-popup.min.js"></script>
+    <script src="../../js/owl.carousel.min.js"></script>
+    <script src="../../js/jquery.nice-select.min.js"></script>
+    <script src="../../js/isotope.pkgd.min.js"></script>
+    <script src="../../js/jquery.circlechart.js"></script>
+    <script src="../../js/wow.min.js"></script>
+    <script src="../../js/main.js"></script>
+</body>
+
+</html>
