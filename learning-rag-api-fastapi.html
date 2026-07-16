@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+
+<head>
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="img/fav.png">
+    <!-- Author Meta -->
+    <meta name="author" content="Ashhar Ahmed">
+    <!-- Meta Description -->
+    <meta name="description" content="Learning Project #1: Build a RAG API with FastAPI - Ashhar Ahmed">
+    <!-- Meta Keyword -->
+    <meta name="keywords" content="">
+    <!-- meta character set -->
+    <meta charset="UTF-8">
+    <!-- Site Title -->
+    <title>Build a RAG API with FastAPI | Ashhar Ahmed</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700,900" rel="stylesheet">
+    <!--CSS============================================= -->
+    <link rel="stylesheet" href="css/linearicons.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/nice-select.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/worklog.css">
+</head>
+
+<body>
+
+    <!-- Start Header Area -->
+    <header id="header" class="dark">
+        <div class="container main-menu">
+            <div class="row align-items-center d-flex">
+                <div id="logo">
+                    <a href="index.html"><img src="img/logo.png" alt="" title="" width="50" height="50" /></a>
+                </div>
+                <nav id="nav-menu-container" class="ml-auto">
+                    <ul class="nav-menu white">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="worklog.html">Work Log</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!-- End Header Area -->
+
+    <!-- start banner Area -->
+    <section class="banner-area relative">
+        <div class="container">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="about-content col-lg-12">
+                    <h1 class="text-white">
+                        Build a RAG API with FastAPI
+                    </h1>
+                    <p class="link-nav">
+                        <span class="box">
+                            <a href="index.html">Home </a>
+                            <a href="worklog.html">Work Log</a>
+                            <a href="learning-rag-api-fastapi.html">RAG API with FastAPI</a>
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End banner Area -->
+
+    <!-- Start Article Area -->
+    <section class="worklog-area">
+        <div class="container">
+            <div class="article-wrap">
+
+                <a class="back-link" href="worklog.html#learning-path">&larr; Back to Learning Path</a>
+
+                <div class="article-meta">
+                    <span class="log-date">Learning Project #1</span>
+                    <ul class="tag-list">
+                        <li>FastAPI</li>
+                        <li>ChromaDB</li>
+                        <li>Ollama</li>
+                        <li>RAG</li>
+                        <li>Embeddings</li>
+                        <li>Multi-tenancy</li>
+                    </ul>
+                </div>
+
+                <div class="article-body">
+
+                    <h2>Introducing Today's Project!</h2>
+                    <p>
+                        In this project, I implemented a Retrieval-Augmented Generation (RAG) based chat endpoint to
+                        understand how modern AI chat applications work. I wanted to learn the complete process, from
+                        storing documents as embeddings in a vector database to retrieving relevant information and
+                        generating accurate responses using an LLM.
+                    </p>
+                    <p>
+                        I'm interested in AI implementation because I enjoy building intelligent applications and
+                        understanding how the underlying technologies work. This project gave me practical experience
+                        with embeddings, vector databases, semantic search, prompt engineering, and LLM integration -
+                        important building blocks for enterprise AI solutions.
+                    </p>
+
+                    <h3>Key tools and concepts</h3>
+                    <p>Key tools used: FastAPI, ChromaDB, Ollama, and Swagger.</p>
+                    <p>Key concepts learned: RAG, embeddings, and metadata filtering.</p>
+
+                    <h3>Challenges and wins</h3>
+                    <p>
+                        This project took approximately 4 hours. The most challenging part was building an intuition
+                        for what embeddings actually represent.
+                    </p>
+
+                    <hr>
+
+                    <h2>Performing RAG Manually</h2>
+                    <p>
+                        Before writing any code, I created a manual Retrieval-Augmented Generation (RAG)
+                        demonstration to understand how the process works end-to-end.
+                    </p>
+                    <p>
+                        RAG is an AI architecture that enables a Large Language Model (LLM) to answer questions using
+                        external knowledge instead of relying only on the information it was trained on. It consists
+                        of three main stages:
+                    </p>
+                    <ul>
+                        <li><strong>Retrieval</strong> - search a knowledge source (documents, PDFs, or a vector
+                            database) to find the most relevant information related to the user's question.</li>
+                        <li><strong>Augmentation</strong> - combine the retrieved information with the user's query
+                            to create a richer prompt that gives the LLM the necessary context.</li>
+                        <li><strong>Generation</strong> - the LLM uses the augmented prompt to generate a response
+                            that is accurate, relevant, and grounded in the retrieved information.</li>
+                    </ul>
+
+                    <h3>Understanding the three parts of RAG</h3>
+                    <p>
+                        I performed a manual demonstration of RAG by adding relevant personal information directly
+                        into the prompt instead of retrieving it from a knowledge base. The retrieval step was
+                        performed manually by selecting the relevant personal details myself, the augmentation step
+                        involved including those details in the prompt, and the generation step was handled by the
+                        LLM to produce the final response. This exercise helped illustrate the core RAG workflow
+                        before implementing it in code.
+                    </p>
+
+                    <h3>Comparing the two AI models</h3>
+                    <p>
+                        One key difference I noticed is that the Qwen2.5:0.5B model is a Large Language Model (LLM)
+                        designed for understanding prompts and generating natural language responses, allowing
+                        conversational interactions.
+                    </p>
+                    <p>
+                        In contrast, an embedding model (such as <code>embed-text</code>) does not generate text or
+                        participate in conversations. Instead, it converts text into high-dimensional numerical
+                        vectors (embeddings) that capture the semantic meaning of the text. These embeddings are
+                        primarily used for:
+                    </p>
+                    <ul>
+                        <li>Semantic search</li>
+                        <li>Similarity matching</li>
+                        <li>Document retrieval</li>
+                        <li>Vector database indexing</li>
+                        <li>Retrieval-Augmented Generation (RAG)</li>
+                    </ul>
+                    <p>
+                        In a RAG system, the embedding model converts both documents and user queries into vectors.
+                        These vectors are compared to find the most semantically relevant documents, which are then
+                        passed to the LLM (Qwen2.5:0.5B) to generate the final response.
+                    </p>
+
+                    <hr>
+
+                    <h2>Building a Personal Knowledge Base</h2>
+                    <p>
+                        Next, I created personal profile documents, split (chunked) the content into smaller pieces,
+                        generated embeddings for each chunk, and stored those embeddings in ChromaDB.
+                    </p>
+                    <p>
+                        An embedding is a high-dimensional numerical representation of the semantic meaning of data,
+                        such as text, images, or audio. Instead of storing the original content for searching, the
+                        embedding model converts each chunk into a vector that captures its meaning. By storing these
+                        vectors in ChromaDB, I can perform semantic similarity searches: when a user submits a query,
+                        it's also converted into an embedding, and ChromaDB retrieves the most relevant chunks based
+                        on vector similarity. These retrieved chunks are then provided to the LLM as context for
+                        generating an accurate response.
+                    </p>
+
+                    <h3>Creating the profile document</h3>
+                    <p>
+                        I included information about myself in a personal profile document, which serves as the
+                        knowledge source for the RAG system. When a user asks a question related to my background,
+                        the RAG pipeline retrieves the relevant sections of the profile and provides them as context
+                        to the LLM - so the AI can answer based on my personal profile rather than relying only on
+                        its pre-trained knowledge.
+                    </p>
+
+                    <h3>How semantic search finds relevant chunks</h3>
+                    <p>
+                        When I ask a question, the embedding model first converts the question into a vector, just
+                        as it did for the document chunks. ChromaDB then performs a similarity search by comparing
+                        the query vector with the vectors stored in the database, identifying the chunks whose
+                        vectors are closest to the query vector in a high-dimensional vector space. These closest
+                        chunks are considered the most semantically relevant to the question - they're retrieved and
+                        passed to the LLM as context, enabling it to generate an accurate, context-aware response.
+                    </p>
+
+                    <hr>
+
+                    <h2>Creating the RAG API with FastAPI</h2>
+                    <p>
+                        Next, I built an API exposing an <code>/ask</code> endpoint. This endpoint accepts a user's
+                        question, retrieves the most relevant information from the knowledge base using the RAG
+                        pipeline, and generates a grounded answer using an LLM. Unlike a standard LLM response, the
+                        answer is based on the retrieved context, making it more accurate, relevant, and less likely
+                        to hallucinate. I verified the implementation using Swagger UI by sending different questions
+                        and validating that responses were generated from the retrieved knowledge base.
+                    </p>
+
+                    <h3>How the /ask endpoint works</h3>
+                    <p>
+                        When a question is received, the API first converts it into an embedding and queries
+                        ChromaDB to find the most relevant document chunks based on semantic similarity. The
+                        retrieved chunks are then included as context in the prompt sent to the LLM, which generates
+                        a grounded response based on the knowledge stored in the database rather than relying solely
+                        on its pre-trained knowledge.
+                    </p>
+
+                    <h3>Testing with Swagger UI</h3>
+                    <p>I tested the API by asking: <em>"What is my name?"</em></p>
+                    <p>The AI answered with: <em>"The person's full name is Ashhar."</em></p>
+                    <p>
+                        The context used was the relevant chunk retrieved from my personal profile stored in
+                        ChromaDB, which contained information such as "My name is Ashhar. I'm currently learning
+                        about cloud computing, AI, and DevOps. I enjoy sci-fi films and surfing the internet." The RAG
+                        pipeline retrieved this profile information and provided it to the LLM, allowing it to
+                        generate a grounded answer based on the stored context rather than the model's own knowledge.
+                    </p>
+
+                    <hr>
+
+                    <h2>Extending to a Multi-User AI Directory</h2>
+                    <p>
+                        In this extension, I added multi-user support, since it allows adding multiple user profiles
+                        and giving more personalized context based on the user behind the API. Multi-tenancy means a
+                        single application serving multiple distinct users/clients.
+                    </p>
+
+                    <h3>Adding the POST /documents endpoint</h3>
+                    <p>
+                        I added a POST endpoint that permits a user to add their own profile. Metadata filtering
+                        allows filtering context based on the user.
+                    </p>
+
+                    <h3>Verifying multi-user filtering</h3>
+                    <p>
+                        I tested multi-user queries by first querying without a user filter, then adding "Jordan" as
+                        a user filter. The filter worked correctly - only the relevant context chunks retrieved for
+                        that particular user came back, since chunks were tagged with user metadata when stored in
+                        ChromaDB.
+                    </p>
+
+                    <hr>
+
+                    <h2>Wrapping Up</h2>
+                    <p>I did this project to learn how to implement a RAG pipeline end-to-end.</p>
+                    <p>Another skill I want to learn next is more AI / LLM integration patterns.</p>
+
+                    <p class="mt-30">
+                        <a href="http://nextwork.ai/projects/ai-devops-api" target="_blank" rel="noopener">Original project page &rarr;</a>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- End Article Area -->
+
+    <!-- start footer Area -->
+    <footer class="footer-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="footer-top flex-column">
+                        <div class="footer-logo">
+                            <a href="#">
+                                <img src="img/logo.png" alt="" width="200" height="200">
+                            </a>
+                            <h4>Follow Me</h4>
+                        </div>
+                        <div class="footer-social">
+                            <a href="https://www.facebook.com/ashhar.ahmed1/"><i class="fa fa-facebook"></i></a>
+                            <a href="https://twitter.com/AshharWeligama"><i class="fa fa-twitter"></i></a>
+                            <a href="https://linkedin.com/in/ashhar-ahmed-se"><i class="fa fa-linkedin"></i></a>
+                            <a href="https://github.com/AshharAhamed"><i class="fa fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row footer-bottom justify-content-center">
+                <p class="col-lg-8 col-sm-12 footer-text">
+                    Copyright &copy;
+                    <script>
+                        document.write(new Date().getFullYear());
+                    </script>
+                    All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#" target="_blank">Ashhar Ahmed</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!-- End footer Area -->
+
+    <!-- ####################### Start Scroll to Top Area ####################### -->
+    <div id="back-top">
+        <a title="Go to Top" href="#">
+            <i class="lnr lnr-arrow-up"></i>
+        </a>
+    </div>
+    <!-- ####################### End Scroll to Top Area ####################### -->
+
+    <script src="js/vendor/jquery-2.2.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="js/easing.min.js"></script>
+    <script src="js/hoverIntent.js"></script>
+    <script src="js/superfish.min.js"></script>
+    <script src="js/mn-accordion.js"></script>
+    <script src="js/jquery.ajaxchimp.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/isotope.pkgd.min.js"></script>
+    <script src="js/jquery.circlechart.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
