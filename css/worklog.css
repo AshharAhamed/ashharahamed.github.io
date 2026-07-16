@@ -7,6 +7,20 @@
   padding-bottom: 90px;
 }
 
+/* Shorter hero banner for the worklog/ section - these are working-journal
+   pages you open often, so less scrolling before real content beats a big
+   marketing-style hero. */
+.about-content.compact-banner {
+  margin-top: 90px;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 767px) {
+  .about-content.compact-banner {
+    margin-top: 60px;
+  }
+}
+
 .worklog-wrap {
   display: flex;
   align-items: flex-start;
